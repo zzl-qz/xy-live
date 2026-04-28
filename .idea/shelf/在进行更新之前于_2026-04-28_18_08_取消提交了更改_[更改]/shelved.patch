@@ -1,0 +1,11 @@
+Index: replace.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-16LE
+===================================================================
+diff --git a/replace.txt b/replace.txt
+new file mode 100644
+--- /dev/null	(date 1777370816181)
++++ b/replace.txt	(date 1777370816181)
+@@ -0,0 +1,1 @@
++106.53.99.229==>***

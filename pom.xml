@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.zzl</groupId>
+    <artifactId>xy-live-app</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+    <modules>
+        <module>xy-live-user-interface</module>
+        <module>xy-live-user-provider</module>
+        <module>xy-live-api</module>
+        <module>xy-live-common-interface</module>
+        <module>xy-live-framework</module>
+        <module>xy-live-framework/xy-live-framework-datasource-starter</module>
+        <module>xy-live-framework/xy-live-framework-redis-starter</module>
+        <module>xy-live-framework/xy-live-framework-dubbo-starter</module>
+        <module>xy-live-id-generate-interface</module>
+        <module>xy-live-id-generate-provider</module>
+        <module>xy-live-gateway</module>
+        <module>xy-live-msg-interface</module>
+        <module>xy-live-msg-provider</module>
+        <module>xy-live-account-interface</module>
+        <module>xy-live-account-provider</module>
+        <module>xy-live-im-interface</module>
+        <module>xy-live-im-core-server</module>
+        <module>XY-live-im-provider</module>
+        <module>xy-live-im-core-server-interface</module>
+        <module>xy-live-im-router-interface</module>
+        <module>xy-live-im-router-provider</module>
+        <module>xy-live-living-interface</module>
+        <module>xy-live-living-provider</module>
+        <module>xy-live-gift-interface</module>
+        <module>xy-live-gift-provider</module>
+        <module>xy-live-bank-interface</module>
+        <module>xy-live-bank-provider</module>
+        <module>xy-live-bank-api</module>
+    </modules>
+
+    <properties>
+        <qiyu-mysql.version>8.0.28</qiyu-mysql.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <springboot.version>3.0.4</springboot.version>
+        <xxl-job.version>2.4.0</xxl-job.version>
+    </properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.0.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2022.0.0.0-RC1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.30</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>

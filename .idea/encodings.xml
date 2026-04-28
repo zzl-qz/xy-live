@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/XY-live-im-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-account-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-account-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-bank-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-bank-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-bank-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-common-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-danmaku-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-danmaku-interface/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-danmaku-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-framework/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-framework/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-framework/xy-live-framework-datasource-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-framework/xy-live-framework-dubbo-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-framework/xy-live-framework-mq-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-framework/xy-live-framework-redis-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-framework/xy-live-framework-web-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-framework/xy-live-framework-xxljob-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-gift-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-gift-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-id-generate-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-id-generate-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-im-core-server-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-im-core-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-im-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-im-router-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-im-router-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-living-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-living-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-msg-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-msg-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-user-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-user-interface/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-user-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xy-live-user-provider/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

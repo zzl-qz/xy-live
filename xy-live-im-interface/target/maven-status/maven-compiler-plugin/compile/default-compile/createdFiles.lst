@@ -1,0 +1,7 @@
+org\xy\live\im\dto\BankMsgBody.class
+org\xy\live\im\constants\ImMsgCodeEnum.class
+org\xy\live\im\interfaces\ImOnlineRpc.class
+org\xy\live\im\dto\ImMsgBody.class
+org\xy\live\im\interfaces\ImTokenRpc.class
+org\xy\live\im\constants\ImConstants.class
+org\xy\live\im\constants\AppIdEnum.class

@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: xy-live-bank-api
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: 82403fdd-8d83-400e-991a-b9294934045b
+      config:
+        import-check:
+          enabled: false
+        # 当前服务启动后去nacos中读取配置文件的后缀
+        file-extension: yml
+        server-addr: localhost:8848
+        namespace: 82403fdd-8d83-400e-991a-b9294934045b
+        group: DEFAULT_GROUP
+  config:
+    import:
+      - optional:nacos:${spring.application.name}.yml

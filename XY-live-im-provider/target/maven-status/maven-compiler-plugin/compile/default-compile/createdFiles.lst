@@ -1,0 +1,7 @@
+org\xy\live\im\provider\ImProviderApplication.class
+org\xy\live\im\provider\service\impl\ImTokenServiceImpl.class
+org\xy\live\im\provider\rpc\ImTokenRpcImpl.class
+org\xy\live\im\provider\service\ImTokenService.class
+org\xy\live\im\provider\service\ImOnlineService.class
+org\xy\live\im\provider\rpc\ImOnlineRpcImpl.class
+org\xy\live\im\provider\service\impl\ImOnlineServiceImpl.class

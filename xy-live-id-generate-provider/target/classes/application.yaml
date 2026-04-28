@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: xy-live-id-generate-provider
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.53.99.229:3306/xy_live_common?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: We2CaweDCC:J
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 20
+
+dubbo:
+  application:
+    name: ${spring.application.name}
+  provider:
+    anyhost: true
+    timeout: 5000
+  registry:
+    address: nacos://localhost:8848?namespace=82403fdd-8d83-400e-991a-b9294934045b
+  protocol:
+    name: dubbo
+    port: 9103
+    host: 0.0.0.0
+    threadpool: fixed
+    dispatcher: execution
+    threads: 1000
+    accepts: 1000

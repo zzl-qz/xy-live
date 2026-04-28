@@ -1,0 +1,13 @@
+org\xy\live\web\starter\context\RequestConstants.class
+org\xy\live\web\starter\context\ErrorAppIdEnum.class
+org\xy\live\web\starter\context\RequestLimitInterceptor.class
+org\xy\live\web\starter\context\XyRequestContext.class
+org\xy\live\web\starter\error\GlobalExceptionHandler.class
+org\xy\live\web\starter\config\WebConfig.class
+org\xy\live\web\starter\context\XyRequestContext$InheritableThreadLocalMap.class
+org\xy\live\web\starter\error\BizBaseErrorEnum.class
+org\xy\live\web\starter\context\XyUserInfoInterceptor.class
+org\xy\live\web\starter\error\XyErrorException.class
+org\xy\live\web\starter\error\XyBaseError.class
+org\xy\live\web\starter\limit\RequestLimit.class
+org\xy\live\web\starter\error\ErrorAssert.class

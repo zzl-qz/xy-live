@@ -1,0 +1,5 @@
+org\xy\live\bank\api\BankApiApplication.class
+org\xy\live\bank\api\controller\PayNotifyController.class
+org\xy\live\bank\api\service\impl\PayNotifyServiceImpl.class
+org\xy\live\bank\api\service\IPayNotifyService.class
+org\xy\live\bank\api\vo\WxPayNotifyVO.class

@@ -1,0 +1,27 @@
+package org.xy.live.gift.dto;
+
+import lombok.Data;
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * 礼物配置dto
+ */
+@Data
+public class GiftConfigDTO implements Serializable {
+
+
+    @Serial
+    private static final long serialVersionUID = -1394363192115983898L;
+    private Integer giftId;
+    private Integer price;
+    private String giftName;
+    private Integer status;
+    private String coverImgUrl;
+    private String svgaUrl;
+    private Date createTime;
+    private Date updateTime;
+    
+}
