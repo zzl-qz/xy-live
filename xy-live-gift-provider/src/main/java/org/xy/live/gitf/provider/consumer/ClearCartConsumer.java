@@ -22,7 +22,6 @@ import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.xy.live.bank.interfaces.dto.AccountTradeReqDTO;
 import org.xy.live.bank.interfaces.dto.AccountTradeRespDTO;
 import org.xy.live.bank.interfaces.rpc.XyCurrencyAccountRpc;
-import org.xy.live.common.interfaces.constant.AclHookConstant;
 import org.xy.live.common.interfaces.dto.SendGiftMq;
 import org.xy.live.common.interfaces.topic.GiftProviderTopicNames;
 import org.xy.live.common.interfaces.topic.ShopCarProviderTopicNames;
@@ -65,7 +64,7 @@ public class ClearCartConsumer implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
 
         AclClientRPCHook rpcHook = new AclClientRPCHook(
-                new SessionCredentials(AclHookConstant.ACCESS_KEY, AclHookConstant.SECRET_KEY));
+                new SessionCredentials(rocketMQConsumerProperties.getAccessKey(), rocketMQConsumerProperties.getSecretKey()));
 
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(
                 rocketMQConsumerProperties.getGroupName() +  "_" + ClearCartConsumer.class.getSimpleName(),

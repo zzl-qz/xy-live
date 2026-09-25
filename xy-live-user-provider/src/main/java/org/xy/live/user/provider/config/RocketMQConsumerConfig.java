@@ -19,7 +19,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.xy.live.common.interfaces.constant.AclHookConstant;
 import org.xy.live.framework.mq.starter.properties.RocketMQConsumerProperties;
 import org.xy.live.framework.redis.starter.key.UserProviderCacheKeyBuilder;
 import org.xy.live.user.constants.CacheAsyncDeleteCode;
@@ -53,7 +52,7 @@ public class RocketMQConsumerConfig implements InitializingBean {
     public void initConsumer() {
         try {
             AclClientRPCHook rpcHook = new AclClientRPCHook(
-                    new SessionCredentials(AclHookConstant.ACCESS_KEY, AclHookConstant.SECRET_KEY));
+                    new SessionCredentials(consumerProperties.getAccessKey(), consumerProperties.getSecretKey()));
 
 
             DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(

@@ -13,6 +13,8 @@ public class RocketMQProducerProperties {
     private String applicationName;
     private Integer sendMsgTimeout;
     private Integer retryTimes;
+    private String accessKey;
+    private String secretKey;
 
     public String getNameSrv() {
         return nameSrv;
@@ -52,6 +54,22 @@ public class RocketMQProducerProperties {
 
     public void setRetryTimes(Integer retryTimes) {
         this.retryTimes = retryTimes;
+    }
+
+    public String getAccessKey() {
+        return accessKey;
+    }
+
+    public void setAccessKey(String accessKey) {
+        this.accessKey = accessKey;
+    }
+
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
     }
 
     @Override

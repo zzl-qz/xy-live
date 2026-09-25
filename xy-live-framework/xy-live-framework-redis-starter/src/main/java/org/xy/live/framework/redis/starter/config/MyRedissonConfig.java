@@ -4,6 +4,7 @@ import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import org.redisson.config.SingleServerConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,6 +13,15 @@ import java.io.IOException;
 
 @Configuration
 public class MyRedissonConfig {
+
+    @Value("${spring.data.redis.url:redis://localhost:6379}")
+    private String redisAddress;
+
+    @Value("${spring.data.redis.password:}")
+    private String redisPassword;
+
+    @Value("${spring.data.redis.database:3}")
+    private int redisDatabase;
     /**
      * 对 Redisson 的使用都是通过 RedissonClient 对象
      * @return
@@ -24,14 +34,17 @@ public class MyRedissonConfig {
 
         // 2. 配置单节点模式
         SingleServerConfig singleServerConfig = config.useSingleServer()
-                .setAddress("redis://localhost:6379")
-                .setPassword("123456")
-                .setDatabase(3)
+                .setAddress(redisAddress)
+                .setDatabase(redisDatabase)
                 .setConnectionPoolSize(50)
                 .setConnectionMinimumIdleSize(10)
                 .setIdleConnectionTimeout(10000)
                 .setConnectTimeout(10000)
                 .setTimeout(10000);
+
+        if (redisPassword != null && !redisPassword.isBlank()) {
+            singleServerConfig.setPassword(redisPassword);
+        }
 
         return Redisson.create(config);
     }

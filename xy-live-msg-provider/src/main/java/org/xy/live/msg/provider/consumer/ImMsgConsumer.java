@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
-import org.xy.live.common.interfaces.constant.AclHookConstant;
 import org.xy.live.common.interfaces.topic.BankProviderTopicNames;
 import org.xy.live.common.interfaces.topic.ImCoreServerProviderTopicNames;
 import org.xy.live.framework.mq.starter.properties.RocketMQConsumerProperties;
@@ -56,7 +55,7 @@ public class ImMsgConsumer implements InitializingBean { // 实现DisposableBean
 
 
         AclClientRPCHook rpcHook = new AclClientRPCHook(
-                new SessionCredentials(AclHookConstant.ACCESS_KEY, AclHookConstant.SECRET_KEY));
+                new SessionCredentials(rocketMQConsumerProperties.getAccessKey(), rocketMQConsumerProperties.getSecretKey()));
 
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(
                 rocketMQConsumerProperties.getGroupName()  + "_" + ImMsgConsumer.class.getSimpleName(),

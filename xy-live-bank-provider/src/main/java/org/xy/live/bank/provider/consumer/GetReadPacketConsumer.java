@@ -17,7 +17,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 import org.xy.live.common.interfaces.enums.TradeTypeEnum;
 import org.xy.live.bank.provider.service.XyCurrencyAccountService;
-import org.xy.live.common.interfaces.constant.AclHookConstant;
 import org.xy.live.common.interfaces.dto.RedPacketMq;
 import org.xy.live.framework.mq.starter.properties.RocketMQConsumerProperties;
 
@@ -47,7 +46,7 @@ public class GetReadPacketConsumer implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
 
         AclClientRPCHook rpcHook = new AclClientRPCHook(
-                new SessionCredentials(AclHookConstant.ACCESS_KEY, AclHookConstant.SECRET_KEY));
+                new SessionCredentials(rocketMQConsumerProperties.getAccessKey(), rocketMQConsumerProperties.getSecretKey()));
 
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(
                 rocketMQConsumerProperties.getGroupName()  +  "_" + GetReadPacketConsumer.class.getSimpleName(),

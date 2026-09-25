@@ -1,0 +1,37 @@
+# Copy this file to config/application-local.yml for local development.
+# Keep the copied file untracked and never commit real credentials.
+
+xy:
+  rmq:
+    producer:
+      nameSrv: localhost:9876
+      groupName: xy-live-local-producer
+      applicationName: xy-live
+      sendMsgTimeout: 10000
+      retryTimes: 3
+      accessKey: CHANGE_ME
+      secretKey: CHANGE_ME
+    consumer:
+      nameSrv: localhost:9876
+      groupName: xy-live-local-consumer
+      accessKey: CHANGE_ME
+      secretKey: CHANGE_ME
+
+spring:
+  data:
+    redis:
+      url: redis://localhost:6379
+      password: CHANGE_ME
+      database: 3
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/xy_live_common?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: CHANGE_ME
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace:
+      config:
+        server-addr: localhost:8848
+        namespace:

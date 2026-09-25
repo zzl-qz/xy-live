@@ -3,9 +3,9 @@ spring:
     name: xy-live-id-generate-provider
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://****:3306/xy_live_common?useUnicode=true&characterEncoding=utf8
-    username: root
-    password: We2CaweDCC:J
+    url: ${XY_ID_DB_URL:jdbc:mysql://127.0.0.1:3306/xy_live_common?useUnicode=true&characterEncoding=utf8}
+    username: ${XY_ID_DB_USERNAME:root}
+    password: ${XY_ID_DB_PASSWORD:CHANGE_ME}
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 20
@@ -17,7 +17,7 @@ dubbo:
     anyhost: true
     timeout: 5000
   registry:
-    address: nacos://localhost:8848?namespace=82403fdd-8d83-400e-991a-b9294934045b
+    address: nacos://${NACOS_SERVER_ADDR:localhost:8848}?namespace=${NACOS_NAMESPACE:}
   protocol:
     name: dubbo
     port: 9103

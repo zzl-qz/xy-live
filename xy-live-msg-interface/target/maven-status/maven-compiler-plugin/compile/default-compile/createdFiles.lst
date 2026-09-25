@@ -1,4 +1,0 @@
-org\xy\live\msg\dto\MessageDTO.class
-org\xy\live\msg\dto\MsgCheckDTO.class
-org\xy\live\msg\interfaces\ISmsRpc.class
-org\xy\live\msg\enums\MsgSendResultEnum.class

@@ -1,6 +1,0 @@
-org\xy\live\im\router\provider\rpc\ImRouterRpcImpl.class
-org\xy\live\im\router\provider\service\ImRouterService.class
-org\xy\live\im\router\provider\cluster\ImRouterCluster.class
-org\xy\live\im\router\provider\service\impl\ImRouterServiceImpl.class
-org\xy\live\im\router\provider\cluster\ImRouterClusterInvoker.class
-org\xy\live\im\router\provider\ImRouterProviderApplication.class

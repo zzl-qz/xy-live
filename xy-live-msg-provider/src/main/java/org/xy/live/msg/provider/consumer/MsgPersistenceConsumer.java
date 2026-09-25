@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
-import org.xy.live.common.interfaces.constant.AclHookConstant;
 import org.xy.live.common.interfaces.topic.ImCoreServerProviderTopicNames;
 import org.xy.live.framework.mq.starter.properties.RocketMQConsumerProperties;
 import org.xy.live.im.dto.ImMsgBody;
@@ -48,7 +47,7 @@ public class MsgPersistenceConsumer implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
 
         AclClientRPCHook rpcHook = new AclClientRPCHook(
-                new SessionCredentials(AclHookConstant.ACCESS_KEY, AclHookConstant.SECRET_KEY));
+                new SessionCredentials(rocketMQConsumerProperties.getAccessKey(), rocketMQConsumerProperties.getSecretKey()));
 
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(
                 rocketMQConsumerProperties.getGroupName()  + "_" + MsgPersistenceConsumer.class.getSimpleName(),

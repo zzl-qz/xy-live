@@ -4,21 +4,21 @@ spring:
   cloud:
     nacos:
       discovery:
-#        server-addr: 1.14.157.207:8848
-        server-addr: localhost:8848
+#        server-addr: ${NACOS_SERVER_ADDR:localhost:8848}
+        server-addr: ${NACOS_SERVER_ADDR:localhost:8848}
 #        namespace: xy-live-test
-        namespace: 82403fdd-8d83-400e-991a-b9294934045b
+        namespace: ${NACOS_NAMESPACE:}
       config:
         import-check:
           enabled: false
         # 当前服务启动后去nacos中读取配置文件的后缀
         file-extension: yml
         # 读取配置的nacos地址
-#        server-addr: 1.14.157.207:8848
-        server-addr: localhost:8848
+#        server-addr: ${NACOS_SERVER_ADDR:localhost:8848}
+        server-addr: ${NACOS_SERVER_ADDR:localhost:8848}
         # 读取配置的nacos的名空间
 #        namespace: xy-live-test
-        namespace: 82403fdd-8d83-400e-991a-b9294934045b
+        namespace: ${NACOS_NAMESPACE:}
         group: DEFAULT_GROUP
   config:
     import:

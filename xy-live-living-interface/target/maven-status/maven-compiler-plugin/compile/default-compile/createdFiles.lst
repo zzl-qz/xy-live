@@ -1,5 +1,0 @@
-org\xy\live\living\interfaces\dto\LivingRoomRespDTO.class
-org\xy\live\living\interfaces\constants\LivingRoomTypeEnum.class
-org\xy\live\living\interfaces\dto\LivingRoomReqDTO.class
-org\xy\live\living\interfaces\rpc\ILivingRoomRpc.class
-org\xy\live\living\interfaces\dto\LivingPkRespDTO.class

@@ -3,7 +3,7 @@
 #    name: xy-live-api
 #    qos-enable: false
 #  registry:
-#    address: nacos://localhost:8848?namespace=82403fdd-8d83-400e-991a-b9294934045b
+#    address: nacos://${NACOS_SERVER_ADDR:localhost:8848}?namespace=${NACOS_NAMESPACE:}
 #  protocol:
 #      name: dubbo
 #      port: 9091

@@ -1,5 +1,0 @@
-org\xy\live\im\core\server\interfaces\constants\ImCoreServerConstants.class
-org\xy\live\im\core\server\interfaces\enums\ParamCodeEnum.class
-org\xy\live\im\core\server\interfaces\rpc\IRouterHandlerRpc.class
-org\xy\live\im\core\server\interfaces\dto\ImOfflineDTO.class
-org\xy\live\im\core\server\interfaces\dto\ImOnlineDTO.class

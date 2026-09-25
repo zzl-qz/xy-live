@@ -15,7 +15,7 @@
 #    redis:
 #      host: localhost
 #      port: 6379
-#      password: 123456
+#      password: ${XY_REDIS_PASSWORD:}
 #      database: 3
 #      lettuce:
 #        pool:
@@ -28,7 +28,7 @@
 #  application:
 #    name: xy-live-user-provider
 #  registry:
-#    address: nacos://localhost:8848?namespace=82403fdd-8d83-400e-991a-b9294934045b
+#    address: nacos://${NACOS_SERVER_ADDR:localhost:8848}?namespace=${NACOS_NAMESPACE:}
 #  protocol:
 #    name: dubbo
 #    port: 9090
@@ -36,11 +36,11 @@
 #xy:
 #  rmq:
 #    producer:
-#      nameSrv: 192.168.116.134:9876
+#      nameSrv: ${XY_RMQ_NAMESRV:localhost:9876}
 #      groupName: xy-live-user-provider
 #      retryTimes: 3
 #      sendTimeOut: 30000
 #    consumer:
-#      nameSrv: 192.168.116.134:9876
+#      nameSrv: ${XY_RMQ_NAMESRV:localhost:9876}
 #      groupName: xy-live-user-provider
 #
