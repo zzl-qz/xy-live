@@ -1,5 +1,7 @@
 # 用户-provider 模块文档（live-user-provider）
 
+> **所属模块**：`xy-live-user-provider` ｜ **上级索引**：[文档索引](../../docs/README.md) ｜ [项目 README](../../README.md)
+
 ## 1. 模块定位
 提供**用户账号、手机号、标签**三大核心域的写读入口，兼顾
 - 高并发读（Redis + 布隆过滤器 + 分布式锁）

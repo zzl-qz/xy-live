@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 使用与部署问题
+    url: https://github.com/zzl-qz/xy-live/blob/master/README.md
+    about: 启动、配置与中间件相关问题请先查阅 README 与 docs 目录下的文档。
+  - name: 贡献指南
+    url: https://github.com/zzl-qz/xy-live/blob/master/CONTRIBUTING.md
+    about: 提交代码前请阅读开发环境、分支与提交规范。

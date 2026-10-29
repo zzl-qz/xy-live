@@ -1,5 +1,7 @@
 # xy-live-msg-provider 模块说明文档
 
+> **所属模块**：`xy-live-msg-provider` ｜ **上级索引**：[文档索引](../../docs/README.md) ｜ [项目 README](../../README.md)
+
 ## 一、模块概述
 `xy-live-msg-provider` 是直播系统中的消息服务核心模块，主要负责短信验证码管理、消息消费与转发等功能，基于 Spring Boot 构建，集成了分布式服务、消息队列、缓存等中间件，为整个直播系统提供可靠的消息传递支持。
 

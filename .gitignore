@@ -74,4 +74,5 @@ config/*.local.*
 *.jks
 !**/*.example
 !**/*.example.*
-/docs/
+
+# 注意：`docs/` 目录用于存放开源文档，需要纳入版本管理，请勿在此忽略。

@@ -1,0 +1,71 @@
+name: 功能建议
+description: 提出一个新功能或改进建议
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请重点描述**要解决的问题**与**使用场景**，实现方案可以讨论后再定。
+
+  - type: textarea
+    id: background
+    attributes:
+      label: 背景与使用场景
+      description: 当前遇到了什么限制？在什么业务场景下需要这个能力？
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 期望的解决方案
+      description: 你希望系统具备怎样的行为
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 考虑过的替代方案
+      description: 现有代码中是否已有临时绕过方式
+    validations:
+      required: false
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: 影响范围
+      description: 预期会改动哪些部分
+      multiple: true
+      options:
+        - 网关 / 接入层
+        - 用户服务
+        - 直播服务
+        - 礼物与商城
+        - 虚拟币与支付
+        - IM 与消息
+        - 基础组件（ID / 短信 / 调度）
+        - 自研 framework starter
+        - 前端 Demo
+        - 文档
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: breaking
+    attributes:
+      label: 兼容性
+      options:
+        - label: 该改动可能影响已有 Dubbo 接口签名
+        - label: 该改动可能涉及数据库表结构变更
+        - label: 该改动可能涉及新增 MQ Topic 或配置项
+        - label: 我愿意提交 PR 实现该功能
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充信息
+      description: 参考实现、相关资料链接等
+    validations:
+      required: false

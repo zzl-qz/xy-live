@@ -1,5 +1,7 @@
 # XY LIVE 前端
 
+> **所属目录**：`front/` ｜ **上级索引**：[文档索引](../docs/README.md) ｜ [项目 README](../README.md)
+
 独立的 React + TypeScript + Vite 前端，放在仓库的 `front/`，不加入 Maven 构建，也不修改后端。
 
 ## 启动

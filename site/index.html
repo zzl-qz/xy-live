@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XY Live — 分布式直播电商后端</title>
+    <meta
+      name="description"
+      content="XY Live 是一套基于 Spring Boot 3 + Dubbo 3 + Netty 的分布式直播电商后端，涵盖直播房间、即时通讯、礼物打赏、红包雨、直播间商城与虚拟账户。"
+    />
+    <meta name="theme-color" content="#07070f" />
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="XY Live — 分布式直播电商后端" />
+    <meta
+      property="og:description"
+      content="Spring Boot 3 + Dubbo 3 + Netty 实现的直播后端：直播房间、IM 长连接、礼物、红包雨、商城与虚拟账户。"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+    <div class="glow glow-a"></div>
+    <div class="glow glow-b"></div>
+
+    <nav class="nav">
+      <div class="wrap">
+        <a class="brand" href="#top">
+          <img src="assets/logo.svg" alt="XY Live" />
+          <span>XY&nbsp;Live</span>
+        </a>
+        <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <div class="nav-links">
+          <a href="#features">特性</a>
+          <a href="#architecture">架构</a>
+          <a href="#quickstart">快速开始</a>
+          <a href="#stack">技术栈</a>
+          <a href="#modules">模块</a>
+          <a href="#docs">文档</a>
+          <a class="btn btn-ghost btn-sm" href="https://github.com/zzl-qz/xy-live" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path
+                d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.24a11.5 11.5 0 0 1 6 0c2.29-1.56 3.3-1.24 3.3-1.24.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.23 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 22.3 24 17.8 24 12.5 24 5.87 18.63.5 12 .5Z"
+              />
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page">
+      <main>
+        <header class="hero" id="top">
+          <div class="wrap">
+            <div class="badges">
+              <span class="badge"><span class="dot"></span>Java 17</span>
+              <span class="badge">Spring Boot 3.0.4</span>
+              <span class="badge">Apache Dubbo 3.3.0</span>
+              <span class="badge">Netty 4.1.18</span>
+              <span class="badge">MIT License</span>
+            </div>
+
+            <h1>
+              面向直播场景的<br />
+              <span class="grad-text">分布式后端体系</span>
+            </h1>
+
+            <p class="hero-sub">
+              以 Spring Boot 3 + Dubbo 3 构建微服务，以 Netty 自研长连接网关承载实时消息，
+              串联直播房间、礼物打赏、红包雨、直播间商城与虚拟账户全链路，
+              并把分库分表、多级缓存、分布式锁与消息最终一致性完整落地。
+            </p>
+
+            <div class="hero-cta">
+              <a class="btn btn-primary btn-lg" href="#quickstart">快速开始</a>
+              <a class="btn btn-ghost btn-lg" href="https://github.com/zzl-qz/xy-live" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m16 18 6-6-6-6" />
+                  <path d="m8 6-6 6 6 6" />
+                </svg>
+                浏览源码
+              </a>
+            </div>
+
+            <div class="terminal">
+              <div class="terminal-bar">
+                <i style="background: #ff5f57"></i>
+                <i style="background: #febc2e"></i>
+                <i style="background: #28c840"></i>
+                <span>bash</span>
+              </div>
+              <div class="terminal-body">
+                <div class="line"><span class="prompt">$</span><span class="t-cmd">git clone</span> <span class="t-str">https://github.com/zzl-qz/xy-live.git</span></div>
+                <div class="line"><span class="prompt">$</span><span class="t-cmd">cd</span> xy-live</div>
+                <div class="line"><span class="prompt">$</span><span class="t-cmd">mvn</span> -T 1C clean install -DskipTests</div>
+              </div>
+            </div>
+
+            <div class="stats">
+              <div class="stat">
+                <b>28</b>
+                <span>Maven 模块</span>
+              </div>
+              <div class="stat">
+                <b>13</b>
+                <span>可独立运行服务</span>
+              </div>
+              <div class="stat">
+                <b>100</b>
+                <span>用户表水平分片</span>
+              </div>
+              <div class="stat">
+                <b>2</b>
+                <span>长连接协议（WS / TCP）</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section id="features">
+          <div class="wrap">
+            <div class="section-head reveal">
+              <span class="section-label">Features</span>
+              <h2 class="section-title">一套完整的直播业务闭环</h2>
+              <p class="section-sub">
+                从开播、互动到付费结算的完整链路。每个业务域独立成服务，服务之间通过 Dubbo
+                同步调用、通过 RocketMQ 异步解耦。
+              </p>
+            </div>
+
+            <div class="grid grid-3">
+              <div class="card reveal">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m22 8-6 4 6 4V8Z" />
+                    <rect width="14" height="12" x="2" y="6" rx="2" />
+                  </svg>
+                </div>
+                <h3>直播房间</h3>
+                <p>开播与关播、房间分页与搜索、房间信息查询，支持普通直播与 PK 连麦两种房间形态。</p>
+              </div>
+
+              <div class="card reveal">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
+                    <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
+                    <circle cx="12" cy="12" r="2" />
+                    <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
+                    <path d="M19.1 4.9C23 8.8 23 15.2 19.1 19.1" />
+                  </svg>
+                </div>
+                <h3>即时通讯</h3>
+                <p>基于 Netty 的长连接服务器，WebSocket 与 TCP 双协议，含握手鉴权、心跳保活与在线消息路由。</p>
+              </div>
+
+              <div class="card reveal">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 12 20 22 4 22 4 12" />
+                    <rect width="20" height="5" x="2" y="7" />
+                    <line x1="12" x2="12" y1="22" y2="7" />
+                    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+                    <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+                  </svg>
+                </div>
+                <h3>礼物打赏</h3>
+                <p>礼物配置、送礼记录与 PK 场景计分，送礼结果通过 RocketMQ 驱动下游账户扣款，保证最终一致。</p>
+              </div>
+
+              <div class="card reveal">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9.9 15.5A2 2 0 0 0 8.5 14.1l-6.1-1.6a.5.5 0 0 1 0-1l6.1-1.5A2 2 0 0 0 9.9 8.5l1.5-6.1a.5.5 0 0 1 1 0l1.6 6.1a2 2 0 0 0 1.4 1.4l6.1 1.6a.5.5 0 0 1 0 1l-6.1 1.5a2 2 0 0 0-1.4 1.4l-1.6 6.1a.5.5 0 0 1-1 0z" />
+                    <path d="M20 3v4" />
+                    <path d="M22 5h-4" />
+                  </svg>
+                </div>
+                <h3>红包雨</h3>
+                <p>主播发起红包、观众抢红包并完成结算。抢红包结果异步入队处理，削峰填谷保障互动体验。</p>
+              </div>
+
+              <div class="card reveal">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="8" cy="21" r="1" />
+                    <circle cx="19" cy="21" r="1" />
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                  </svg>
+                </div>
+                <h3>直播间商城</h3>
+                <p>商品与 SKU、购物车、预下单、支付回调，配合库存扣减、超时回滚与订单状态订正任务。</p>
+              </div>
+
+              <div class="card reveal">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h16a1 1 0 0 1 1 1v3" />
+                    <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-3" />
+                    <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
+                  </svg>
+                </div>
+                <h3>虚拟账户</h3>
+                <p>星币账户余额与交易流水，统一的支付网关衔接订单结算、余额扣减与异步支付回调。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="architecture">
+          <div class="wrap">
+            <div class="section-head reveal">
+              <span class="section-label">Architecture</span>
+              <h2 class="section-title">清晰的分层与依赖方向</h2>
+              <p class="section-sub">
+                接入层负责协议适配与参数编排，业务服务之间按 Dubbo 同步调用、按 RocketMQ 异步解耦，
+                所有服务统一注册到 Nacos。
+              </p>
+            </div>
+
+            <div class="arch reveal">
+              <div class="arch-wrap">
+                <svg viewBox="0 0 1040 616" role="img" aria-label="XY Live 系统架构图">
+                  <defs>
+                    <marker id="xy-arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+                      <path d="M0,0 L0,6 L8,3 z" fill="#6b7191" />
+                    </marker>
+                  </defs>
+
+                  <rect x="340" y="20" width="360" height="56" rx="13" fill="rgba(34,211,238,0.10)" stroke="#22d3ee" stroke-width="1.5" />
+                  <text x="520" y="44" text-anchor="middle" font-size="15" font-weight="700" fill="#eef0f8">Web 浏览器 / 移动端 App</text>
+                  <text x="520" y="62" text-anchor="middle" font-size="11.5" fill="#9aa0b8">React Demo · 观众端 · 主播端</text>
+
+                  <path d="M520 76 V110" stroke="#4b5169" stroke-width="1.5" fill="none" />
+                  <path d="M180 110 H860" stroke="#4b5169" stroke-width="1.5" fill="none" />
+                  <path d="M180 110 V158" stroke="#4b5169" stroke-width="1.5" fill="none" marker-end="url(#xy-arrow)" />
+                  <path d="M380 110 V158" stroke="#4b5169" stroke-width="1.5" fill="none" marker-end="url(#xy-arrow)" />
+                  <path d="M580 110 V158" stroke="#4b5169" stroke-width="1.5" fill="none" marker-end="url(#xy-arrow)" />
+                  <path d="M860 110 V158" stroke="#4b5169" stroke-width="1.5" fill="none" marker-end="url(#xy-arrow)" />
+                  <text x="534" y="104" font-size="11.5" fill="#9aa0b8">HTTP · WebSocket · TCP</text>
+
+                  <rect x="60" y="120" width="620" height="138" rx="16" fill="rgba(139,92,246,0.06)" stroke="rgba(139,92,246,0.35)" stroke-width="1.2" stroke-dasharray="6 5" />
+                  <text x="80" y="146" font-size="11.5" font-weight="700" letter-spacing="1.4" fill="#6b7191">接入层 / ACCESS</text>
+
+                  <rect x="90" y="162" width="180" height="62" rx="11" fill="rgba(139,92,246,0.14)" stroke="#8b5cf6" stroke-width="1.5" />
+                  <text x="180" y="190" text-anchor="middle" font-size="14.5" font-weight="700" fill="#eef0f8">Gateway</text>
+                  <text x="180" y="208" text-anchor="middle" font-size="11.5" fill="#9aa0b8">Spring Cloud · 9191</text>
+
+                  <rect x="290" y="162" width="180" height="62" rx="11" fill="rgba(139,92,246,0.14)" stroke="#8b5cf6" stroke-width="1.5" />
+                  <text x="380" y="190" text-anchor="middle" font-size="14.5" font-weight="700" fill="#eef0f8">HTTP API</text>
+                  <text x="380" y="208" text-anchor="middle" font-size="11.5" fill="#9aa0b8">Dubbo 编排</text>
+
+                  <rect x="490" y="162" width="180" height="62" rx="11" fill="rgba(139,92,246,0.14)" stroke="#8b5cf6" stroke-width="1.5" />
+                  <text x="580" y="190" text-anchor="middle" font-size="14.5" font-weight="700" fill="#eef0f8">Bank API</text>
+                  <text x="580" y="208" text-anchor="middle" font-size="11.5" fill="#9aa0b8">支付回调</text>
+
+                  <rect x="720" y="120" width="280" height="138" rx="16" fill="rgba(217,70,239,0.06)" stroke="rgba(217,70,239,0.35)" stroke-width="1.2" stroke-dasharray="6 5" />
+                  <text x="740" y="146" font-size="11.5" font-weight="700" letter-spacing="1.4" fill="#6b7191">长连接 / REALTIME</text>
+                  <rect x="740" y="162" width="240" height="62" rx="11" fill="rgba(217,70,239,0.14)" stroke="#d946ef" stroke-width="1.5" />
+                  <text x="860" y="190" text-anchor="middle" font-size="14.5" font-weight="700" fill="#eef0f8">IM Core Server</text>
+                  <text x="860" y="208" text-anchor="middle" font-size="11.5" fill="#9aa0b8">Netty · WS + TCP</text>
+
+                  <path d="M340 258 V284" stroke="#4b5169" stroke-width="1.5" fill="none" marker-end="url(#xy-arrow)" />
+                  <text x="352" y="276" font-size="11.5" fill="#9aa0b8">Dubbo RPC</text>
+
+                  <path d="M860 258 V272 H790 V284" stroke="#4b5169" stroke-width="1.5" fill="none" marker-end="url(#xy-arrow)" />
+                  <text x="700" y="268" font-size="11.5" fill="#9aa0b8">RocketMQ</text>
+
+                  <rect x="60" y="290" width="940" height="196" rx="16" fill="rgba(217,70,239,0.05)" stroke="rgba(217,70,239,0.3)" stroke-width="1.2" stroke-dasharray="6 5" />
+                  <text x="80" y="316" font-size="11.5" font-weight="700" letter-spacing="1.4" fill="#6b7191">微服务层 / SERVICES</text>
+
+                  <rect x="70" y="332" width="140" height="58" rx="11" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.14)" stroke-width="1.2" />
+                  <text x="140" y="357" text-anchor="middle" font-size="13.5" font-weight="700" fill="#eef0f8">User</text>
+                  <text x="140" y="375" text-anchor="middle" font-size="11" fill="#9aa0b8">用户 / 标签</text>
+
+                  <rect x="226" y="332" width="140" height="58" rx="11" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.14)" stroke-width="1.2" />
+                  <text x="296" y="357" text-anchor="middle" font-size="13.5" font-weight="700" fill="#eef0f8">Living</text>
+                  <text x="296" y="375" text-anchor="middle" font-size="11" fill="#9aa0b8">直播间 / PK</text>
+
+                  <rect x="382" y="332" width="140" height="58" rx="11" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.14)" stroke-width="1.2" />
+                  <text x="452" y="357" text-anchor="middle" font-size="13.5" font-weight="700" fill="#eef0f8">Gift</text>
+                  <text x="452" y="375" text-anchor="middle" font-size="11" fill="#9aa0b8">礼物 / 商城</text>
+
+                  <rect x="538" y="332" width="140" height="58" rx="11" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.14)" stroke-width="1.2" />
+                  <text x="608" y="357" text-anchor="middle" font-size="13.5" font-weight="700" fill="#eef0f8">Bank</text>
+                  <text x="608" y="375" text-anchor="middle" font-size="11" fill="#9aa0b8">虚拟币 / 订单</text>
+
+                  <rect x="694" y="332" width="140" height="58" rx="11" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.14)" stroke-width="1.2" />
+                  <text x="764" y="357" text-anchor="middle" font-size="13.5" font-weight="700" fill="#eef0f8">Msg</text>
+                  <text x="764" y="375" text-anchor="middle" font-size="11" fill="#9aa0b8">短信 / 转发</text>
+
+                  <rect x="850" y="332" width="140" height="58" rx="11" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.14)" stroke-width="1.2" />
+                  <text x="920" y="357" text-anchor="middle" font-size="13.5" font-weight="700" fill="#eef0f8">Account</text>
+                  <text x="920" y="375" text-anchor="middle" font-size="11" fill="#9aa0b8">Token</text>
+
+                  <rect x="70" y="406" width="293" height="58" rx="11" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" />
+                  <text x="216" y="431" text-anchor="middle" font-size="13.5" font-weight="700" fill="#eef0f8">Id Generate</text>
+                  <text x="216" y="449" text-anchor="middle" font-size="11" fill="#9aa0b8">分布式发号器 · 9103</text>
+
+                  <rect x="383" y="406" width="293" height="58" rx="11" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" />
+                  <text x="529" y="431" text-anchor="middle" font-size="13.5" font-weight="700" fill="#eef0f8">IM Router</text>
+                  <text x="529" y="449" text-anchor="middle" font-size="11" fill="#9aa0b8">消息路由</text>
+
+                  <rect x="696" y="406" width="293" height="58" rx="11" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" />
+                  <text x="842" y="431" text-anchor="middle" font-size="13.5" font-weight="700" fill="#eef0f8">IM Provider</text>
+                  <text x="842" y="449" text-anchor="middle" font-size="11" fill="#9aa0b8">Token / 在线状态</text>
+
+                  <path d="M530 486 V524" stroke="#4b5169" stroke-width="1.5" fill="none" marker-end="url(#xy-arrow)" />
+                  <text x="542" y="510" font-size="11.5" fill="#9aa0b8">JDBC · Cache · MQ</text>
+
+                  <rect x="90" y="530" width="174" height="58" rx="11" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.4)" stroke-width="1.3" />
+                  <text x="177" y="564" text-anchor="middle" font-size="13" font-weight="700" fill="#fcd34d">Nacos</text>
+
+                  <rect x="279" y="530" width="174" height="58" rx="11" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.4)" stroke-width="1.3" />
+                  <text x="366" y="564" text-anchor="middle" font-size="13" font-weight="700" fill="#fcd34d">MySQL 8</text>
+
+                  <rect x="468" y="530" width="174" height="58" rx="11" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.4)" stroke-width="1.3" />
+                  <text x="555" y="564" text-anchor="middle" font-size="13" font-weight="700" fill="#fcd34d">Redis</text>
+
+                  <rect x="657" y="530" width="174" height="58" rx="11" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.4)" stroke-width="1.3" />
+                  <text x="744" y="564" text-anchor="middle" font-size="13" font-weight="700" fill="#fcd34d">RocketMQ</text>
+
+                  <rect x="846" y="530" width="174" height="58" rx="11" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.4)" stroke-width="1.3" />
+                  <text x="933" y="564" text-anchor="middle" font-size="13" font-weight="700" fill="#fcd34d">XXL-Job</text>
+                </svg>
+              </div>
+
+              <div class="arch-legend">
+                <span><i class="lg-client"></i>客户端</span>
+                <span><i class="lg-gw"></i>网关与长连接</span>
+                <span><i class="lg-svc"></i>业务微服务</span>
+                <span><i class="lg-infra"></i>基础设施</span>
+              </div>
+            </div>
+
+            <div class="grid grid-3" style="margin-top: 26px">
+              <div class="card reveal">
+                <h3>分层约定</h3>
+                <p>
+                  每个业务域拆成 <code>-interface</code> 与 <code>-provider</code>。前者只放 Dubbo 接口、DTO 与枚举，
+                  不依赖 Spring；后者放实现、DAO 与 Spring 配置。
+                </p>
+              </div>
+              <div class="card reveal">
+                <h3>接入层不碰数据库</h3>
+                <p>
+                  <code>xy-live-api</code> 只做参数校验、上下文透传与 RPC 编排，
+                  所有持久化逻辑下沉到 provider，保证边界清晰。
+                </p>
+              </div>
+              <div class="card reveal">
+                <h3>异步优先</h3>
+                <p>
+                  送礼、支付、库存回滚等跨域写操作统一走 RocketMQ 事件，
+                  主链路只做必要的强一致校验。
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="quickstart">
+          <div class="wrap">
+            <div class="section-head reveal">
+              <span class="section-label">Quick Start</span>
+              <h2 class="section-title">四步跑起整套服务</h2>
+              <p class="section-sub">
+                需要自备 Nacos、MySQL、Redis 与 RocketMQ。服务配置由 Nacos 下发，
+                仓库内只保留引导配置，因此第三步不能跳过。
+              </p>
+            </div>
+
+            <div class="reveal">
+              <div class="tabs">
+                <button class="tab active" data-tab="env">1. 环境准备</button>
+                <button class="tab" data-tab="db">2. 初始化数据库</button>
+                <button class="tab" data-tab="nacos">3. Nacos 配置</button>
+                <button class="tab" data-tab="run">4. 启动服务</button>
+              </div>
+
+              <div class="code-block active" data-panel="env">
+                <div class="code-head">依赖组件与默认端口</div>
+                <div class="code-body">
+<pre><span class="t-cmt"># 必备</span>
+JDK        17+
+Maven      3.8+
+Nacos      2.x     :8848
+MySQL      8.0     :3306
+Redis      6+      :6379
+RocketMQ   4.9.x   :9876
+
+<span class="t-cmt"># 可选，仅调度相关服务需要</span>
+XXL-Job    2.4.0
+Node.js    18+     <span class="t-cmt">（仅 front/ 演示端）</span></pre>
+                </div>
+              </div>
+
+              <div class="code-block" data-panel="db">
+                <div class="code-head">需要准备的两个库</div>
+                <div class="code-body">
+<pre><span class="t-cmt">-- 用户域：分 100 表，共 300 张分表 + 1 张索引表</span>
+CREATE DATABASE <span class="t-str">xy_live_user</span> DEFAULT CHARSET utf8mb4;
+<span class="t-cmt">-- t_user_00 ~ t_user_99
+-- t_user_tag_00 ~ t_user_tag_99
+-- t_user_phone_00 ~ t_user_phone_99
+-- t_user_index</span>
+
+<span class="t-cmt">-- 公共库：分布式 ID 号段表等</span>
+CREATE DATABASE <span class="t-str">xy_live_common</span> DEFAULT CHARSET utf8mb4;
+
+<span class="t-cmt"># 分表规则见：xy-live-user-provider/src/main/resources/xy-db-sharding.yaml</span>
+<span class="t-cmt"># 建表 SQL 暂未随仓库提供，需按 dao/po 实体自行创建</span></pre>
+                </div>
+              </div>
+
+              <div class="code-block" data-panel="nacos">
+                <div class="code-head">配置下发规则</div>
+                <div class="code-body">
+<pre><span class="t-cmt"># 每个服务在 Nacos 中对应一份配置：</span>
+<span class="t-cmt">#   Data ID:  ${spring.application.name}.yml</span>
+<span class="t-cmt">#   Group:    DEFAULT_GROUP</span>
+
+xy-live-gateway.yml            <span class="t-cmt"># 端口 9191、路由规则</span>
+xy-live-api.yml                <span class="t-cmt"># REST 上下文、Dubbo 端口</span>
+xy-live-user-provider.yml
+xy-live-living-provider.yml
+xy-live-gift-provider.yml
+xy-live-bank-provider.yml
+xy-live-bank-api.yml
+xy-live-msg-provider.yml
+xy-live-account-provider.yml
+xy-live-im-core-server.yml
+xy-live-im-router-provider.yml
+xy-live-im-provider.yml
+xy-live-id-generate-provider.yml
+
+<span class="t-cmt"># 本地凭据通过环境变量注入，不要写进 Nacos 公共配置</span>
+cp .env.example .env</pre>
+                </div>
+              </div>
+
+              <div class="code-block" data-panel="run">
+                <div class="code-head">按依赖方向启动</div>
+                <div class="code-body">
+<pre><span class="t-cmt"># 1. 构建（interface / framework 需先 install）</span>
+mvn -T 1C clean install -DskipTests
+
+<span class="t-cmt"># 2. 基础服务</span>
+java -jar xy-live-id-generate-provider/target/*.jar
+java -jar xy-live-account-provider/target/*.jar
+java -jar xy-live-user-provider/target/*.jar
+
+<span class="t-cmt"># 3. 业务服务</span>
+java -jar xy-live-living-provider/target/*.jar
+java -jar xy-live-gift-provider/target/*.jar
+java -jar xy-live-bank-provider/target/*.jar
+java -jar xy-live-msg-provider/target/*.jar
+
+<span class="t-cmt"># 4. IM 体系</span>
+java -jar xy-live-im-core-server/target/*.jar
+java -jar xy-live-im-router-provider/target/*.jar
+java -jar XY-live-im-provider/target/*.jar
+
+<span class="t-cmt"># 5. 接入层</span>
+java -jar xy-live-api/target/*.jar
+java -jar xy-live-bank-api/target/*.jar
+java -jar xy-live-gateway/target/*.jar
+
+<span class="t-cmt"># 网关默认监听 9191，路由前缀由 Nacos 配置决定</span></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout reveal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                <line x1="12" x2="12" y1="9" y2="13" />
+                <line x1="12" x2="12.01" y1="17" y2="17" />
+              </svg>
+              <div>
+                <h4>关于建表脚本</h4>
+                <p>
+                  仓库暂未附带完整的 DDL。你需要依据
+                  <code>xy-db-sharding.yaml</code> 中的分表节点与各模块 <code>dao/po</code> 实体自行建表，
+                  这也是当前最影响上手体验的一环，欢迎通过 PR 补充。
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="stack">
+          <div class="wrap">
+            <div class="section-head reveal">
+              <span class="section-label">Tech Stack</span>
+              <h2 class="section-title">克制而成熟的技术选型</h2>
+              <p class="section-sub">
+                全部基于主流开源组件，版本集中在父 POM 管理，不引入额外的商业中间件。
+              </p>
+            </div>
+
+            <div class="grid grid-4">
+              <div class="stack-group reveal">
+                <h4>应用框架</h4>
+                <div class="stack-list">
+                  <div class="stack-item"><span>Java</span><code>17</code></div>
+                  <div class="stack-item"><span>Spring Boot</span><code>3.0.4</code></div>
+                  <div class="stack-item"><span>Spring Cloud Alibaba</span><code>2022.0.0.0</code></div>
+                  <div class="stack-item"><span>Apache Dubbo</span><code>3.3.0</code></div>
+                  <div class="stack-item"><span>Lombok</span><code>1.18.30</code></div>
+                </div>
+              </div>
+
+              <div class="stack-group reveal">
+                <h4>数据与缓存</h4>
+                <div class="stack-list">
+                  <div class="stack-item"><span>MySQL</span><code>8.0</code></div>
+                  <div class="stack-item"><span>MyBatis-Plus</span><code>3.5.3.1</code></div>
+                  <div class="stack-item"><span>ShardingSphere-JDBC</span><code>5.3.2</code></div>
+                  <div class="stack-item"><span>Redis</span><code>6+</code></div>
+                  <div class="stack-item"><span>Redisson</span><code>—</code></div>
+                  <div class="stack-item"><span>Caffeine</span><code>—</code></div>
+                </div>
+              </div>
+
+              <div class="stack-group reveal">
+                <h4>通信与消息</h4>
+                <div class="stack-list">
+                  <div class="stack-item"><span>Netty</span><code>4.1.18</code></div>
+                  <div class="stack-item"><span>RocketMQ</span><code>4.9.6</code></div>
+                  <div class="stack-item"><span>Spring Cloud Gateway</span><code>—</code></div>
+                  <div class="stack-item"><span>WebSocket</span><code>RFC 6455</code></div>
+                  <div class="stack-item"><span>TCP 自定义协议</span><code>—</code></div>
+                </div>
+              </div>
+
+              <div class="stack-group reveal">
+                <h4>治理与运维</h4>
+                <div class="stack-list">
+                  <div class="stack-item"><span>Nacos</span><code>2.x</code></div>
+                  <div class="stack-item"><span>XXL-Job</span><code>2.4.0</code></div>
+                  <div class="stack-item"><span>容联云短信 SDK</span><code>1.0.4</code></div>
+                  <div class="stack-item"><span>Maven 多模块</span><code>—</code></div>
+                  <div class="stack-item"><span>JMeter 压测</span><code>5.6.2</code></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="modules">
+          <div class="wrap">
+            <div class="section-head reveal">
+              <span class="section-label">Modules</span>
+              <h2 class="section-title">28 个模块，职责单一</h2>
+              <p class="section-sub">
+                按「接口 / 实现」成对拆分，接口模块可被任何服务依赖，实现模块只负责自身业务。
+              </p>
+            </div>
+
+            <div class="reveal">
+              <h3 class="mod-group-title">接入层</h3>
+              <div class="mod-table">
+                <div class="mod-row">
+                  <code>xy-live-gateway</code>
+                  <p>Spring Cloud Gateway 统一入口，默认端口 9191，路由规则由 Nacos 下发。</p>
+                </div>
+                <div class="mod-row">
+                  <code>xy-live-api</code>
+                  <p>HTTP 聚合层，对外提供直播、礼物、商城、用户与 IM 配置接口，内部通过 Dubbo 编排。</p>
+                </div>
+                <div class="mod-row">
+                  <code>xy-live-bank-api</code>
+                  <p>支付回调入口，接收支付平台异步通知并驱动订单结算。</p>
+                </div>
+              </div>
+
+              <h3 class="mod-group-title">业务服务</h3>
+              <div class="mod-table">
+                <div class="mod-row">
+                  <code>xy-live-user-provider</code>
+                  <p>用户信息、手机号注册登录、用户标签。三级缓存 + 分布式锁 + 按 user_id 分 100 表。</p>
+                </div>
+                <div class="mod-row">
+                  <code>xy-live-living-provider</code>
+                  <p>直播间生命周期、房间列表分页、PK 连麦状态。</p>
+                </div>
+                <div class="mod-row">
+                  <code>xy-live-gift-provider</code>
+                  <p>礼物配置与送礼、红包雨发放领取、SKU / 购物车 / 订单 / 库存。</p>
+                </div>
+                <div class="mod-row">
+                  <code>xy-live-bank-provider</code>
+                  <p>虚拟币账户、交易流水、订单支付与状态订正。</p>
+                </div>
+                <div class="mod-row">
+                  <code>xy-live-account-provider</code>
+                  <p>账户 Token 的签发与校验。</p>
+                </div>
+                <div class="mod-row">
+                  <code>xy-live-msg-provider</code>
+                  <p>短信验证码、IM 业务消息消费与转发。</p>
+                </div>
+              </div>
+
+              <h3 class="mod-group-title">即时通讯</h3>
+              <div class="mod-table">
+                <div class="mod-row">
+                  <code>xy-live-im-core-server</code>
+                  <p>Netty 长连接服务器，处理连接、鉴权、心跳、编解码与消息分发。</p>
+                </div>
+                <div class="mod-row">
+                  <code>xy-live-im-router-provider</code>
+                  <p>IM 消息路由，按用户定位到具体长连接节点。</p>
+                </div>
+                <div class="mod-row">
+                  <code>XY-live-im-provider</code>
+                  <p>IM Token 签发与在线状态查询。</p>
+                </div>
+              </div>
+
+              <h3 class="mod-group-title">基础支撑与框架</h3>
+              <div class="mod-table">
+                <div class="mod-row">
+                  <code>xy-live-id-generate-provider</code>
+                  <p>号段模式分布式 ID 发号器，Dubbo 端口 9103。</p>
+                </div>
+                <div class="mod-row">
+                  <code>xy-live-common-interface</code>
+                  <p>跨服务共享 DTO、枚举、MQ Topic 常量与工具类。</p>
+                </div>
+                <div class="mod-row">
+                  <code>xy-live-framework-*</code>
+                  <p>
+                    web / datasource / redis / mq / dubbo / xxljob 六个自研 starter，
+                    收敛异常处理、限流、缓存 Key、MQ 与任务调度装配。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="docs">
+          <div class="wrap">
+            <div class="section-head reveal">
+              <span class="section-label">Documentation</span>
+              <h2 class="section-title">设计与压测都有据可查</h2>
+              <p class="section-sub">
+                模块文档随代码一同演进，包含时序图、缓存 Key 规范、接口清单与真实压测数据。
+              </p>
+            </div>
+
+            <div class="grid grid-3">
+              <a class="doc-card reveal" href="https://github.com/zzl-qz/xy-live/blob/master/docs/README.md" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+                <div>
+                  <h3>文档总索引</h3>
+                  <p>全局文档与各模块文档的导航入口。</p>
+                </div>
+              </a>
+
+              <a class="doc-card reveal" href="https://github.com/zzl-qz/xy-live/blob/master/xy-live-user-provider/docs/user-provider.md" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                <div>
+                  <h3>用户服务文档</h3>
+                  <p>接口清单、核心流程时序图、缓存 Key 规范与 FAQ。</p>
+                </div>
+              </a>
+
+              <a class="doc-card reveal" href="https://github.com/zzl-qz/xy-live/blob/master/xy-live-user-provider/docs/%E6%A8%A1%E5%9D%97%E4%BA%AE%E7%82%B9%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3.md" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                </svg>
+                <div>
+                  <h3>高性能设计</h3>
+                  <p>三级缓存、分库分表、分布式锁与延迟双删的实现说明。</p>
+                </div>
+              </a>
+
+              <a class="doc-card reveal" href="https://github.com/zzl-qz/xy-live/blob/master/xy-live-im-core-server/docs/%E6%A8%A1%E5%9D%97%E8%AF%B4%E6%98%8E.md" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
+                  <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
+                  <circle cx="12" cy="12" r="2" />
+                  <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
+                  <path d="M19.1 4.9C23 8.8 23 15.2 19.1 19.1" />
+                </svg>
+                <div>
+                  <h3>IM 模块说明</h3>
+                  <p>Netty 连接建立、消息编解码、路由与断连清理全流程。</p>
+                </div>
+              </a>
+
+              <a class="doc-card reveal" href="https://github.com/zzl-qz/xy-live/blob/master/xy-live-msg-provider/docs/xy-live-msg-provider.md" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                <div>
+                  <h3>消息服务文档</h3>
+                  <p>验证码发送校验流程、MQ 消费与线程池配置。</p>
+                </div>
+              </a>
+
+              <a class="doc-card reveal" href="https://github.com/zzl-qz/xy-live/blob/master/xy-live-user-provider/docs/%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3%E5%8E%8B%E6%B5%8B%E6%8A%A5%E5%91%8A.md" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 3v18h18" />
+                  <path d="m19 9-5 5-4-4-3 3" />
+                </svg>
+                <div>
+                  <h3>压测报告</h3>
+                  <p>登录、单用户查询与批量查询在不同并发下的真实数据。</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="start">
+          <div class="wrap">
+            <div class="cta reveal">
+              <h2>从一个可运行的直播后端开始</h2>
+              <p>
+                代码、文档与压测报告全部开源。遇到问题欢迎提 Issue，
+                想补充建表脚本或部署方案也欢迎直接提交 PR。
+              </p>
+              <div class="hero-cta">
+                <a class="btn btn-primary btn-lg" href="https://github.com/zzl-qz/xy-live" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path
+                      d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.24a11.5 11.5 0 0 1 6 0c2.29-1.56 3.3-1.24 3.3-1.24.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.23 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 22.3 24 17.8 24 12.5 24 5.87 18.63.5 12 .5Z"
+                    />
+                  </svg>
+                  Star on GitHub
+                </a>
+                <a class="btn btn-ghost btn-lg" href="https://github.com/zzl-qz/xy-live/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">参与贡献</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="footer">
+        <div class="wrap">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <a class="brand" href="#top">
+                <img src="assets/logo.svg" alt="XY Live" />
+                <span>XY&nbsp;Live</span>
+              </a>
+              <p>分布式直播电商后端。以工程实践为载体，记录一个直播系统从 0 到 1 的完整实现。</p>
+            </div>
+
+            <div class="footer-col">
+              <h4>项目</h4>
+              <ul>
+                <li><a href="#features">功能特性</a></li>
+                <li><a href="#architecture">系统架构</a></li>
+                <li><a href="#quickstart">快速开始</a></li>
+                <li><a href="#modules">模块说明</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>文档</h4>
+              <ul>
+                <li><a href="https://github.com/zzl-qz/xy-live/blob/master/README.md" target="_blank" rel="noopener">项目 README</a></li>
+                <li><a href="https://github.com/zzl-qz/xy-live/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">贡献指南</a></li>
+                <li><a href="https://github.com/zzl-qz/xy-live/blob/master/CHANGELOG.md" target="_blank" rel="noopener">变更日志</a></li>
+                <li><a href="https://github.com/zzl-qz/xy-live/blob/master/docs/README.md" target="_blank" rel="noopener">文档索引</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>社区</h4>
+              <ul>
+                <li><a href="https://github.com/zzl-qz/xy-live" target="_blank" rel="noopener">GitHub 仓库</a></li>
+                <li><a href="https://github.com/zzl-qz/xy-live/issues" target="_blank" rel="noopener">问题反馈</a></li>
+                <li><a href="https://github.com/zzl-qz/xy-live/pulls" target="_blank" rel="noopener">提交 PR</a></li>
+                <li><a href="https://github.com/zzl-qz/xy-live/blob/master/LICENSE" target="_blank" rel="noopener">MIT 协议</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <span>© 2026 XY Live · 基于 MIT License 开源</span>
+            <span>Built with Spring Boot · Dubbo · Netty · RocketMQ</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <button class="totop" aria-label="回到顶部">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 15-6-6-6 6" />
+      </svg>
+    </button>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
